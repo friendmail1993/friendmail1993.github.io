@@ -1,525 +1,793 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>楊欣培 Stephanie Yang | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>楊欣培 Stephanie Yang | Data Analyst / Data Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;600&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1814;
+    --ink2: #3d3830;
+    --ink3: #7a7268;
+    --paper: #f5f0e8;
+    --paper2: #ede7d9;
+    --paper3: #e3dccf;
+    --accent: #c8531a;
+    --accent2: #8b3a10;
+    --teal: #1a6b5a;
+    --gold: #b8860b;
+    --rule: rgba(26,24,20,0.12);
+    --mono: 'DM Mono', monospace;
+    --serif: 'DM Serif Display', 'Noto Serif TC', serif;
+    --sans: 'Space Grotesk', sans-serif;
+  }
 
-    <style>
-        :root {
-            --ink: #1a1a2e;
-            --soft-ink: #3a3a5c;
-            --muted: #8888aa;
-            --bg: #f7f6f2;
-            --white: #ffffff;
-            --teal: #00b4a6;
-            --coral: #ff6b6b;
-            --gold: #f5a623;
-            --lavender: #c9b8f5;
-            --teal-light: #d0f5f3;
-            --coral-light: #ffe0e0;
-            --gold-light: #fef0d0;
-        }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  html { scroll-behavior: smooth; }
 
-        html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
 
-        body {
-            font-family: 'DM Sans', 'Noto Sans TC', sans-serif;
-            background: var(--bg);
-            color: var(--ink);
-            line-height: 1.7;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+  /* ── Grid noise texture overlay ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='none'/%3E%3Ccircle cx='1' cy='1' r='0.4' fill='%231a1814' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
 
-        /* ── NOISE TEXTURE OVERLAY ── */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 0;
-        }
+  /* ── Typography ── */
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
+  .mono { font-family: var(--mono); font-size: 0.8em; letter-spacing: 0.04em; }
 
-        /* ── DECORATIVE BG BLOBS ── */
-        .blob-wrapper {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.18;
-        }
-        .blob-1 { width: 500px; height: 500px; background: var(--teal); top: -100px; right: -100px; }
-        .blob-2 { width: 400px; height: 400px; background: var(--coral); bottom: 100px; left: -80px; }
-        .blob-3 { width: 300px; height: 300px; background: var(--gold); top: 50%; left: 60%; }
+  /* ── Layout ── */
+  .container { max-width: 900px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
 
-        /* ── LAYOUT ── */
-        .page {
-            position: relative;
-            z-index: 1;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 60px 30px 80px;
-        }
+  section { padding: 80px 0; }
+  section + section { border-top: 1px solid var(--rule); }
 
-        /* ── HEADER ── */
-        header {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 20px;
-            align-items: end;
-            margin-bottom: 64px;
-            padding-bottom: 40px;
-            border-bottom: 2px solid var(--ink);
-            opacity: 0;
-            animation: slideDown 0.7s 0.1s forwards;
-        }
+  /* ── Nav ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 14px 32px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-name { font-family: var(--mono); font-size: 0.82em; letter-spacing: 0.06em; color: var(--ink2); }
+  .nav-links { display: flex; gap: 24px; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 0.78em; color: var(--ink3); text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
 
-        .header-left h1 {
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(2.8rem, 6vw, 4.5rem);
-            line-height: 1.05;
-            color: var(--ink);
-            margin-bottom: 6px;
-        }
-        .header-left h1 em {
-            font-style: italic;
-            color: var(--teal);
-        }
-        .header-left .subtitle {
-            font-size: 0.95rem;
-            color: var(--muted);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            font-weight: 500;
-        }
+  /* ── Hero ── */
+  #hero {
+    padding: 140px 0 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: end;
+    min-height: 88vh;
+  }
+  .hero-left { }
+  .hero-overline {
+    font-family: var(--mono);
+    font-size: 0.75em;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-overline::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
+  h1.hero-name {
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .hero-name-en {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    color: var(--ink3);
+    letter-spacing: 0.08em;
+    margin-bottom: 28px;
+  }
+  .hero-title {
+    font-size: 1.05rem;
+    color: var(--ink2);
+    font-weight: 300;
+    margin-bottom: 8px;
+  }
+  .hero-title strong { color: var(--accent); font-weight: 500; }
+  .hero-tagline {
+    font-size: 0.88rem;
+    color: var(--ink3);
+    font-style: italic;
+    font-family: 'Noto Serif TC', serif;
+    margin-bottom: 36px;
+    border-left: 2px solid var(--paper3);
+    padding-left: 14px;
+  }
+  .hero-contacts { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
+  .contact-item {
+    display: flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 0.78em; color: var(--ink3);
+  }
+  .contact-item a { color: var(--teal); text-decoration: none; }
+  .contact-item a:hover { color: var(--accent); }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 9px 20px;
+    font-family: var(--mono); font-size: 0.78em; letter-spacing: 0.04em;
+    border: 1px solid; border-radius: 2px;
+    text-decoration: none; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .btn-primary:hover { background: var(--accent); border-color: var(--accent); }
+  .btn-outline { background: transparent; color: var(--ink2); border-color: var(--paper3); }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-        .header-right {
-            text-align: right;
-        }
-        .contact-links {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 8px;
-        }
-        .contact-links a, .contact-links span {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.88rem;
-            color: var(--soft-ink);
-            text-decoration: none;
-            font-weight: 500;
-        }
-        .contact-links a:hover { color: var(--teal); }
-        .contact-links i { 
-            width: 28px; height: 28px;
-            background: var(--white);
-            border-radius: 6px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.75rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
+  .hero-right {
+    display: flex; flex-direction: column; gap: 20px;
+    padding-bottom: 8px;
+  }
+  .stat-card {
+    background: var(--paper2);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 20px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent);
+  }
+  .stat-number {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--ink3); }
+  .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stat-card.mini .stat-number { font-size: 1.5rem; }
 
-        /* ── SECTION ── */
-        section {
-            margin-bottom: 56px;
-            opacity: 0;
-            transform: translateY(28px);
-        }
-        section.visible {
-            animation: fadeUp 0.6s forwards;
-        }
+  /* ── Section headers ── */
+  .section-header {
+    display: flex; align-items: baseline; gap: 16px;
+    margin-bottom: 48px;
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 0.72em;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+  }
+  h2.section-title {
+    font-size: 1.9rem;
+    color: var(--ink);
+  }
+  .section-rule { flex: 1; height: 1px; background: var(--rule); margin-left: 12px; }
 
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 28px;
-        }
-        .section-label {
-            font-size: 0.72rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--muted);
-            font-weight: 600;
-            writing-mode: initial;
-        }
-        .section-icon {
-            width: 36px; height: 36px;
-            border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.9rem;
-            flex-shrink: 0;
-        }
-        .icon-teal { background: var(--teal-light); color: var(--teal); }
-        .icon-coral { background: var(--coral-light); color: var(--coral); }
-        .icon-gold { background: var(--gold-light); color: var(--gold); }
-        .icon-lavender { background: #ede8ff; color: #7c5cbf; }
+  /* ── Skills ── */
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .skill-group { }
+  .skill-group-label {
+    font-family: var(--mono); font-size: 0.72em; color: var(--accent);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag {
+    font-family: var(--mono); font-size: 0.74em;
+    padding: 4px 10px;
+    border-radius: 2px;
+    border: 1px solid;
+  }
+  .tag-core { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .tag-mid  { background: var(--paper2); color: var(--ink2); border-color: var(--paper3); }
+  .tag-soft { background: transparent; color: var(--teal); border-color: rgba(26,107,90,0.3); }
 
-        .section-title {
-            font-family: 'DM Serif Display', serif;
-            font-size: 1.6rem;
-            color: var(--ink);
-        }
-        .section-line {
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(to right, rgba(26,26,46,0.15), transparent);
-        }
+  /* ── Projects ── */
+  .project-main {
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+  .project-header {
+    background: var(--paper2);
+    padding: 28px 32px;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 20px;
+  }
+  .project-overline {
+    font-family: var(--mono); font-size: 0.72em; color: var(--accent);
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px;
+  }
+  h3.project-title { font-size: 1.5rem; color: var(--ink); margin-bottom: 4px; }
+  .project-title-en { font-family: var(--mono); font-size: 0.78em; color: var(--ink3); }
+  .project-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+  .badge {
+    font-family: var(--mono); font-size: 0.7em;
+    padding: 3px 8px; border-radius: 2px;
+  }
+  .badge-tech { background: rgba(200,83,26,0.1); color: var(--accent2); border: 1px solid rgba(200,83,26,0.2); }
+  .badge-cloud { background: rgba(26,107,90,0.1); color: var(--teal); border: 1px solid rgba(26,107,90,0.2); }
 
-        /* ── ABOUT ── */
-        .about-card {
-            background: var(--white);
-            border-radius: 18px;
-            padding: 28px 32px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-            border-left: 4px solid var(--teal);
-            position: relative;
-            overflow: hidden;
-        }
-        .about-card::after {
-            content: '"';
-            position: absolute;
-            right: 24px; top: -10px;
-            font-family: 'DM Serif Display', serif;
-            font-size: 8rem;
-            color: var(--teal-light);
-            line-height: 1;
-            pointer-events: none;
-        }
-        .about-card p {
-            font-size: 1.05rem;
-            color: var(--soft-ink);
-            position: relative;
-            z-index: 1;
-        }
+  .project-body { padding: 28px 32px; }
+  .star-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 28px; }
+  .star-item { }
+  .star-label {
+    font-family: var(--mono); font-size: 0.68em; color: var(--accent);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .star-text { font-size: 0.88rem; color: var(--ink2); line-height: 1.6; }
+  .star-text strong { color: var(--ink); }
 
-        /* ── EXPERIENCE CARD ── */
-        .exp-card {
-            background: var(--white);
-            border-radius: 18px;
-            padding: 26px 28px;
-            margin-bottom: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 16px;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.25s, box-shadow 0.25s;
-        }
-        .exp-card::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 0; bottom: 0;
-            width: 4px;
-            background: var(--coral);
-            border-radius: 4px 0 0 4px;
-        }
-        .exp-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 36px rgba(0,0,0,0.1);
-        }
-        .exp-title {
-            font-weight: 600;
-            font-size: 1rem;
-            color: var(--ink);
-            margin-bottom: 4px;
-        }
-        .exp-company {
-            font-size: 0.85rem;
-            color: var(--coral);
-            font-weight: 500;
-            margin-bottom: 12px;
-        }
-        .exp-card ul {
-            list-style: none;
-            padding: 0;
-        }
-        .exp-card ul li {
-            font-size: 0.9rem;
-            color: var(--soft-ink);
-            padding: 4px 0;
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-        }
-        .exp-card ul li::before {
-            content: '→';
-            color: var(--coral);
-            font-size: 0.8rem;
-            margin-top: 2px;
-            flex-shrink: 0;
-        }
-        .date-badge {
-            background: #f0eefc;
-            color: #7c5cbf;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.78rem;
-            font-weight: 600;
-            height: fit-content;
-            white-space: nowrap;
-        }
+  /* ETL flow */
+  .etl-flow {
+    background: var(--paper3);
+    border-radius: 2px;
+    padding: 20px 24px;
+    display: flex; align-items: center; gap: 0;
+    margin-bottom: 28px;
+    overflow-x: auto;
+  }
+  .etl-step {
+    display: flex; flex-direction: column; align-items: center;
+    min-width: 130px; text-align: center;
+  }
+  .etl-label {
+    font-family: var(--mono); font-size: 0.68em; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
+  }
+  .etl-tools {
+    font-size: 0.78em; color: var(--ink2);
+    line-height: 1.5;
+  }
+  .etl-arrow {
+    font-family: var(--mono); color: var(--paper3);
+    font-size: 1.2em; flex-shrink: 0; padding: 0 4px;
+    filter: invert(0.5);
+    color: var(--ink3);
+  }
 
-        /* ── SKILLS ── */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
-            gap: 14px;
-        }
-        .skill-item {
-            background: var(--white);
-            border-radius: 14px;
-            padding: 18px 16px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.05);
-            text-align: center;
-            cursor: default;
-            transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
-            border: 2px solid transparent;
-        }
-        .skill-item:hover {
-            transform: translateY(-6px) rotate(-1deg);
-            box-shadow: 0 16px 36px rgba(0,0,0,0.12);
-            border-color: var(--teal);
-        }
-        .skill-icon {
-            font-size: 1.6rem;
-            margin-bottom: 8px;
-            display: block;
-        }
-        .skill-name {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--ink);
-        }
-        .skill-sub {
-            font-size: 0.75rem;
-            color: var(--muted);
-            margin-top: 2px;
-        }
+  /* PBI placeholder */
+  .pbi-placeholder {
+    background: var(--paper3);
+    border: 2px dashed var(--rule);
+    border-radius: 2px;
+    height: 220px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 10px;
+    color: var(--ink3);
+    margin-bottom: 0;
+  }
+  .pbi-placeholder .pbi-icon {
+    width: 40px; height: 40px;
+    background: rgba(184,134,11,0.2);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3em;
+  }
+  .pbi-caption { font-family: var(--mono); font-size: 0.75em; }
+  .pbi-sub { font-size: 0.78em; color: var(--ink3); }
 
-        /* ── EDUCATION ── */
-        .edu-card {
-            background: var(--white);
-            border-radius: 18px;
-            padding: 26px 28px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 16px;
-            transition: transform 0.25s;
-            border-top: 4px solid var(--gold);
-        }
-        .edu-card:hover { transform: translateY(-4px); }
-        .edu-degree {
-            font-weight: 600;
-            color: var(--ink);
-            margin-bottom: 4px;
-        }
-        .edu-school {
-            font-size: 0.9rem;
-            color: var(--muted);
-        }
+  /* github strip */
+  .github-strip {
+    display: flex; align-items: center; gap: 16px;
+    padding: 14px 20px;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 2px;
+    margin-top: 20px;
+    font-family: var(--mono); font-size: 0.78em;
+  }
+  .github-strip a { color: var(--paper2); text-decoration: none; margin-left: auto; }
+  .github-strip a:hover { color: var(--accent); }
+  .commits { color: var(--accent); font-size: 1em; font-weight: 500; }
 
-        /* ── FOOTER TAG ── */
-        .footer-tag {
-            margin-top: 60px;
-            text-align: center;
-            font-size: 0.78rem;
-            color: var(--muted);
-            letter-spacing: 0.1em;
-        }
+  /* Minor project */
+  .project-minor {
+    border: 1px solid var(--rule); border-radius: 2px;
+    padding: 24px 28px;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 20px; align-items: start;
+  }
+  .wip-badge {
+    font-family: var(--mono); font-size: 0.68em;
+    padding: 3px 8px; border-radius: 2px;
+    background: rgba(184,134,11,0.12);
+    color: var(--gold);
+    border: 1px solid rgba(184,134,11,0.25);
+  }
 
-        /* ── ANIMATIONS ── */
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(28px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
+  /* ── Experience ── */
+  .exp-list { display: flex; flex-direction: column; gap: 0; }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 32px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-meta { }
+  .exp-date { font-family: var(--mono); font-size: 0.72em; color: var(--ink3); margin-bottom: 6px; }
+  .exp-company { font-size: 0.8rem; color: var(--ink2); font-weight: 500; }
+  .exp-right { }
+  .exp-role { font-size: 1.05rem; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+  .exp-role-en { font-family: var(--mono); font-size: 0.72em; color: var(--ink3); margin-bottom: 12px; }
+  .exp-points { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .exp-points li {
+    font-size: 0.88rem; color: var(--ink2); line-height: 1.65;
+    padding-left: 16px; position: relative;
+  }
+  .exp-points li::before {
+    content: '—';
+    position: absolute; left: 0; color: var(--accent);
+    font-family: var(--mono);
+  }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
 
-        /* ── RESPONSIVE ── */
-        @media (max-width: 640px) {
-            header { grid-template-columns: 1fr; }
-            .header-right { text-align: left; }
-            .contact-links { align-items: flex-start; }
-            .exp-card { grid-template-columns: 1fr; }
-            .skills-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-    </style>
+  /* ── Education ── */
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .edu-card {
+    padding: 24px;
+    background: var(--paper2);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+  }
+  .edu-period { font-family: var(--mono); font-size: 0.7em; color: var(--ink3); margin-bottom: 8px; }
+  .edu-school { font-family: var(--serif); font-size: 1.15rem; margin-bottom: 4px; }
+  .edu-dept { font-size: 0.82rem; color: var(--ink2); }
+
+  .certs-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+  .cert-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    font-size: 0.82rem; color: var(--ink2);
+  }
+  .cert-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+  /* ── Footer ── */
+  footer {
+    padding: 40px 0;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+    font-family: var(--mono); font-size: 0.72em; color: var(--ink3);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Animations ── */
+  .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  /* ── Responsive ── */
+  @media (max-width: 700px) {
+    #hero { grid-template-columns: 1fr; gap: 40px; padding-top: 110px; min-height: auto; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .star-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 8px; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .project-header { grid-template-columns: 1fr; }
+    nav { padding: 12px 20px; }
+    .container { padding: 0 20px; }
+    section { padding: 56px 0; }
+  }
+</style>
 </head>
 <body>
 
-<div class="blob-wrapper">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
+<!-- ── Navigation ── -->
+<nav>
+  <span class="nav-name">Stephanie Yang · 楊欣培</span>
+  <ul class="nav-links">
+    <li><a href="#skills">技能</a></li>
+    <li><a href="#projects">專題</a></li>
+    <li><a href="#experience">經歷</a></li>
+    <li><a href="#education">學歷</a></li>
+  </ul>
+</nav>
+
+<!-- ── Hero ── -->
+<div class="container">
+<section id="hero">
+  <div class="hero-left fade-in">
+    <div class="hero-overline">Data Analyst / Data Engineer</div>
+    <h1 class="hero-name">楊欣培</h1>
+    <div class="hero-name-en">STEPHANIE YANG</div>
+
+    <p class="hero-title">
+      <strong>資料分析師 · 資料工程師</strong><br>
+      商管背景 × 技術實作 × 實務經驗
+    </p>
+    <p class="hero-tagline">
+      以應英系訓練的表達力，結合 ETL Pipeline、SQL、Power BI 的資料工程實力，<br>
+      擅長將原始資料轉化為有決策價值的洞察。
+    </p>
+
+    <div class="hero-contacts">
+      <div class="contact-item">
+        <span>✉</span>
+        <a href="mailto:friendmail1993@yahoo.com.tw">friendmail1993@yahoo.com.tw</a>
+      </div>
+      <div class="contact-item">
+        <span>☎</span>
+        <span>0912-625-188</span>
+      </div>
+      <div class="contact-item">
+        <span>📍</span>
+        <span>台中市東勢區</span>
+      </div>
+    </div>
+
+    <div class="hero-btns">
+      <a class="btn btn-primary" href="https://github.com/friendmail1993" target="_blank">⬡ GitHub</a>
+      <a class="btn btn-outline" href="mailto:friendmail1993@yahoo.com.tw">聯絡我</a>
+    </div>
+  </div>
+
+  <div class="hero-right fade-in" style="transition-delay:0.15s">
+    <div class="stat-card">
+      <div class="stat-number">122,200+</div>
+      <div class="stat-label">Records processed across ETL pipeline</div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card mini">
+        <div class="stat-number">17</div>
+        <div class="stat-label">Star Schema tables<br>on Azure SQL</div>
+      </div>
+      <div class="stat-card mini">
+        <div class="stat-number">187</div>
+        <div class="stat-label">GitHub commits<br>（4 人協作）</div>
+      </div>
+    </div>
+    <div class="stat-card mini">
+      <div class="stat-number">2018–2026</div>
+      <div class="stat-label">Data time span · 10+ open government sources integrated</div>
+    </div>
+  </div>
+</section>
 </div>
 
-<main class="page">
+<!-- ── Skills ── -->
+<div class="container">
+<section id="skills">
+  <div class="section-header fade-in">
+    <span class="section-num">01</span>
+    <h2 class="section-title">技術技能</h2>
+    <div class="section-rule"></div>
+  </div>
 
-    <!-- HEADER -->
-    <header>
-        <div class="header-left">
-            <h1>楊欣培<br><em>Stephanie Yang</em></h1>
-            <p class="subtitle">Data & Frontend Developer · 台灣，台中</p>
-        </div>
-        <div class="header-right">
-            <div class="contact-links">
-                <a href="mailto:friendmail1993@gmail.com">
-                    <i class="fas fa-envelope"></i> friendmail1993@gmail.com
-                </a>
-                <a href="https://github.com/friendmail1993" target="_blank">
-                    <i class="fab fa-github"></i> github.com/friendmail1993
-                </a>
-                <span>
-                    <i class="fas fa-map-marker-alt"></i> Taichung, Taiwan
-                </span>
-            </div>
-        </div>
-    </header>
+  <div class="skills-grid">
+    <div class="skill-group fade-in">
+      <div class="skill-group-label">Data Engineering</div>
+      <div class="skill-tags">
+        <span class="tag tag-core">T-SQL / SQL Server</span>
+        <span class="tag tag-core">ETL Pipeline</span>
+        <span class="tag tag-core">Star Schema</span>
+        <span class="tag tag-mid">Microsoft Azure</span>
+        <span class="tag tag-mid">SSMS</span>
+      </div>
+    </div>
+    <div class="skill-group fade-in" style="transition-delay:0.08s">
+      <div class="skill-group-label">Data Analysis & Viz</div>
+      <div class="skill-tags">
+        <span class="tag tag-core">Power BI</span>
+        <span class="tag tag-core">DAX</span>
+        <span class="tag tag-mid">Python (Pandas)</span>
+        <span class="tag tag-mid">yfinance</span>
+        <span class="tag tag-mid">Selenium</span>
+        <span class="tag tag-mid">Excel</span>
+      </div>
+    </div>
+    <div class="skill-group fade-in" style="transition-delay:0.16s">
+      <div class="skill-group-label">Tools & Workflow</div>
+      <div class="skill-tags">
+        <span class="tag tag-mid">GitHub / VS Code</span>
+        <span class="tag tag-mid">LINE API</span>
+        <span class="tag tag-mid">Notion API</span>
+        <span class="tag tag-soft">專案管理</span>
+        <span class="tag tag-soft">技術簡報</span>
+        <span class="tag tag-soft">英文讀寫</span>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
 
-    <!-- ABOUT -->
-    <section data-delay="0">
-        <div class="section-header">
-            <div class="section-icon icon-teal"><i class="fas fa-user"></i></div>
-            <h2 class="section-title">關於我</h2>
-            <div class="section-line"></div>
-            <span class="section-label">About</span>
-        </div>
-        <div class="about-card">
-            <p>我是一位熱愛技術的開發者，喜歡學習新事物並分享知識。目前專注於數據分析與 SQL 資料庫管理，享受從資料中挖掘價值的過程。對於前後端技術皆有涉獵，致力於打造兼顧效能與使用體驗的解決方案。</p>
-        </div>
-    </section>
+<!-- ── Projects ── -->
+<div class="container">
+<section id="projects">
+  <div class="section-header fade-in">
+    <span class="section-num">02</span>
+    <h2 class="section-title">專題作品</h2>
+    <div class="section-rule"></div>
+  </div>
 
-    <!-- EXPERIENCE -->
-    <section data-delay="100">
-        <div class="section-header">
-            <div class="section-icon icon-coral"><i class="fas fa-briefcase"></i></div>
-            <h2 class="section-title">工作經歷</h2>
-            <div class="section-line"></div>
-            <span class="section-label">Experience</span>
-        </div>
-        <div class="exp-card">
-            <div>
-                <div class="exp-title">軟體工程師</div>
-                <div class="exp-company">某某科技公司</div>
-                <ul>
-                    <li>負責前端開發與維護，提升頁面載入速度 20%</li>
-                    <li>協作開發內部自動化工具，提升團隊作業效率</li>
-                </ul>
-            </div>
-            <div class="date-badge">2023 — 至今</div>
-        </div>
-    </section>
+  <!-- Main project -->
+  <div class="project-main fade-in">
+    <div class="project-header">
+      <div>
+        <div class="project-overline">Capstone Project · 2025</div>
+        <h3 class="project-title">神山下的民生圖譜</h3>
+        <div class="project-title-en">TSMC Stock Price & Taiwan Consumer Industry Correlation Study</div>
+      </div>
+      <div class="project-badges">
+        <span class="badge badge-tech">ETL Pipeline</span>
+        <span class="badge badge-tech">T-SQL</span>
+        <span class="badge badge-tech">Python</span>
+        <span class="badge badge-tech">DAX</span>
+        <span class="badge badge-tech">Power BI</span>
+        <span class="badge badge-cloud">Azure SQL</span>
+        <span class="badge badge-cloud">Star Schema</span>
+      </div>
+    </div>
 
-    <!-- SKILLS -->
-    <section data-delay="200">
-        <div class="section-header">
-            <div class="section-icon icon-teal"><i class="fas fa-code"></i></div>
-            <h2 class="section-title">專業技能</h2>
-            <div class="section-line"></div>
-            <span class="section-label">Skills</span>
+    <div class="project-body">
+      <!-- ETL Flow -->
+      <div class="etl-flow">
+        <div class="etl-step">
+          <div class="etl-label">Extract</div>
+          <div class="etl-tools">Python Selenium<br>yfinance / requests<br>10+ 政府平台</div>
         </div>
-        <div class="skills-grid">
-            <div class="skill-item">
-                <span class="skill-icon">🐍</span>
-                <div class="skill-name">Python</div>
-                <div class="skill-sub">Pandas · NumPy</div>
-            </div>
-            <div class="skill-item">
-                <span class="skill-icon">🗄️</span>
-                <div class="skill-name">SQL Server</div>
-                <div class="skill-sub">資料庫管理</div>
-            </div>
-            <div class="skill-item">
-                <span class="skill-icon">📊</span>
-                <div class="skill-name">Power BI</div>
-                <div class="skill-sub">數據視覺化</div>
-            </div>
-            <div class="skill-item">
-                <span class="skill-icon">⚡</span>
-                <div class="skill-name">JavaScript</div>
-                <div class="skill-sub">ES6+</div>
-            </div>
-            <div class="skill-item">
-                <span class="skill-icon">⚛️</span>
-                <div class="skill-name">React</div>
-                <div class="skill-sub">前端框架</div>
-            </div>
-            <div class="skill-item">
-                <span class="skill-icon">🌿</span>
-                <div class="skill-name">Git / GitHub</div>
-                <div class="skill-sub">版本控制</div>
-            </div>
+        <div class="etl-arrow">→</div>
+        <div class="etl-step">
+          <div class="etl-label">Transform</div>
+          <div class="etl-tools">Python Pandas<br>T-SQL 清洗<br>時序正規化</div>
         </div>
-    </section>
+        <div class="etl-arrow">→</div>
+        <div class="etl-step">
+          <div class="etl-label">Load</div>
+          <div class="etl-tools">Azure SQL DB<br>17 張資料表<br>Star Schema</div>
+        </div>
+        <div class="etl-arrow">→</div>
+        <div class="etl-step">
+          <div class="etl-label">Visualize</div>
+          <div class="etl-tools">Power BI<br>DAX Measures<br>相關係數 (r)</div>
+        </div>
+      </div>
 
-    <!-- EDUCATION -->
-    <section data-delay="300">
-        <div class="section-header">
-            <div class="section-icon icon-gold"><i class="fas fa-graduation-cap"></i></div>
-            <h2 class="section-title">教育背景</h2>
-            <div class="section-line"></div>
-            <span class="section-label">Education</span>
+      <!-- STAR -->
+      <div class="star-grid">
+        <div class="star-item">
+          <div class="star-label">Situation · Task</div>
+          <div class="star-text">
+            探究台積電股價飆漲是否對台灣食衣住行產生可量化影響，
+            但各政府資料平台格式不一、時間粒度不同（日級股價 vs 月級民生指標），
+            無法直接關聯。
+          </div>
         </div>
-        <div class="edu-card">
-            <div>
-                <div class="edu-degree">應用英語系</div>
-                <div class="edu-school">勤益科技大學</div>
-            </div>
-            <div class="date-badge">2012 — 2016</div>
+        <div class="star-item">
+          <div class="star-label">Action</div>
+          <div class="star-text">
+            建立完整 ETL Pipeline，整合 <strong>10+ 開放資料平台</strong>，以 Python（Selenium、Pandas）清洗原始資料，
+            透過 <strong>T-SQL 時序正規化</strong>解決粒度對齊問題，將 <strong>122,200+ 筆</strong>資料匯入 Azure SQL Database，
+            設計含 <strong>17 張表的 Star Schema</strong>，並以自訂 <strong>DAX 公式</strong>計算 Pearson 相關係數及領先/落後指標。
+          </div>
         </div>
-    </section>
+        <div class="star-item">
+          <div class="star-label">Result</div>
+          <div class="star-text">
+            在 Power BI 呈現台積電股價與餐飲業、超商營業額的時序關聯視覺化報表，
+            並透過大事記工具提示（COVID-19、ChatGPT 等關鍵事件）提供脈絡化洞察；
+            <strong>4 人協作 187 commits</strong>，展現團隊版本管理紀律。
+          </div>
+        </div>
+        <div class="star-item">
+          <div class="star-label">Key Technical Achievement</div>
+          <div class="star-text">
+            自製 Python GUI 工具（tkinter）批次將 Excel 轉為 UTF-8 CSV 並直接上傳 SQL Server，
+            解決重複性資料匯入痛點；同時自訂 DimDate 時間維度表，支援季 / 月 / 日多層級分析。
+          </div>
+        </div>
+      </div>
 
-    <div class="footer-tag">Designed with ♥ · 楊欣培 · 2025</div>
+      <!-- Power BI placeholder -->
+      <div class="pbi-placeholder">
+        <div class="pbi-icon">📊</div>
+        <div class="pbi-caption">Power BI Dashboard Preview</div>
+        <div class="pbi-sub">截圖 / 互動報表即將上線</div>
+      </div>
 
-</main>
+      <!-- GitHub strip -->
+      <div class="github-strip">
+        <span>⬡ GitHub</span>
+        <span class="commits">187 commits</span>
+        <span style="color:rgba(245,240,232,0.5)">4 contributors · Python · SQL · Power BI</span>
+        <a href="https://github.com/Eri579/260321_nNiseproj" target="_blank">查看專案 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Minor project: LINE Bot -->
+  <div class="project-minor fade-in">
+    <div>
+      <div class="project-overline" style="font-family:var(--mono);font-size:0.72em;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Side Project</div>
+      <h3 style="font-family:var(--serif);font-size:1.2rem;margin-bottom:4px;">LINE Bot 自動記帳系統</h3>
+      <div style="font-family:var(--mono);font-size:0.75em;color:var(--ink3);margin-bottom:12px;">Automated Bookkeeping via LINE × Notion API</div>
+      <p style="font-size:0.86rem;color:var(--ink2);line-height:1.65;margin-bottom:12px;">
+        串接 LINE Messaging API 與 Notion Database API，在 LINE 對話中輸入品項與金額，
+        自動寫入 Notion 資料庫。規劃未來整合 POS 系統，每月自動產出收支 Power BI 報表。
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        <span class="badge badge-tech">LINE API</span>
+        <span class="badge badge-tech">Notion API</span>
+        <span class="badge badge-tech">Python</span>
+        <span class="badge badge-cloud">Power BI（規劃中）</span>
+      </div>
+    </div>
+    <div>
+      <span class="wip-badge">Work in Progress</span>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ── Experience ── -->
+<div class="container">
+<section id="experience">
+  <div class="section-header fade-in">
+    <span class="section-num">03</span>
+    <h2 class="section-title">工作經歷</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="exp-list">
+
+    <div class="exp-item fade-in">
+      <div class="exp-meta">
+        <div class="exp-date">2023/02 — 現在</div>
+        <div class="exp-company">梧賴咖啡工作室</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">共同經營者 · 行銷業務</div>
+        <div class="exp-role-en">Co-Owner & Marketing</div>
+        <ul class="exp-points">
+          <li>主導店面營運、社群行銷與客戶關係管理，累積穩定回客群</li>
+          <li>接洽政府單位、學校及企業咖啡課程，拓展 B2B 業務</li>
+          <li>以小型商業實務視角驗證資料分析工具的落地價值（LINE Bot 記帳系統開發動機）</li>
+          <li>參與地方青年提案，具備社區資源整合能力</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag tag-mid">業務開發</span>
+          <span class="tag tag-mid">社群經營</span>
+          <span class="tag tag-mid">活動規劃</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div class="exp-meta">
+        <div class="exp-date">2020/05 — 2023/02</div>
+        <div class="exp-company">台灣社區重建協會</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">專案經理</div>
+        <div class="exp-role-en">Project Manager · Community Development</div>
+        <ul class="exp-points">
+          <li>獨立撰寫並執行 <strong>6+ 項</strong>文化部 / 文化局補助標案，計畫書、期中末報告全程負責</li>
+          <li>規劃並執行成果展 6 場、社區深度小旅行 2 場、線上直播培力課程 18 堂（YouTube）</li>
+          <li>跨部門協調后里區、新社區公所及各社區組織，具備多方利害關係人溝通經驗</li>
+          <li>獨力製作專案成果影片，具備視覺化敘事能力</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag tag-mid">專案管理</span>
+          <span class="tag tag-mid">政府標案</span>
+          <span class="tag tag-mid">活動執行</span>
+          <span class="tag tag-soft">跨組織溝通</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div class="exp-meta">
+        <div class="exp-date">2016/07 — 2017/11</div>
+        <div class="exp-company">中欣商務精品飯店</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">櫃檯副組長</div>
+        <div class="exp-role-en">Front Desk Supervisor · Hotel</div>
+        <ul class="exp-points">
+          <li>管理 5–8 人櫃台團隊，負責排班、新人教育訓練</li>
+          <li>處理國內外訂單及 OTA 控管，具備跨語言客服能力（中 / 英）</li>
+          <li>客訴處理與危機應對，提升顧客滿意度</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag tag-mid">團隊管理</span>
+          <span class="tag tag-mid">英語客服</span>
+          <span class="tag tag-soft">客訴處理</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</div>
+
+<!-- ── Education ── -->
+<div class="container">
+<section id="education">
+  <div class="section-header fade-in">
+    <span class="section-num">04</span>
+    <h2 class="section-title">學歷 · 訓練 · 證照</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="edu-grid fade-in">
+    <div class="edu-card">
+      <div class="edu-period">2012 — 2016</div>
+      <div class="edu-school">國立勤益科技大學</div>
+      <div class="edu-dept">應用英語系 四技畢業</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-period">2025 完訓</div>
+      <div class="edu-school">勞動部職業訓練</div>
+      <div class="edu-dept">資料庫管理與分析班<br>
+        <span style="font-size:0.85em;color:var(--ink3)">SQL · Python · Power BI · DAX · ETL</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="certs-grid fade-in">
+    <div class="cert-item"><span class="cert-dot"></span>Google 負責任 AI 技術課程認證</div>
+    <div class="cert-item"><span class="cert-dot"></span>丙級電腦軟體應用技術士</div>
+    <div class="cert-item"><span class="cert-dot"></span>丙級門市服務技術士</div>
+    <div class="cert-item"><span class="cert-dot"></span>丙級會計事務技術士</div>
+    <div class="cert-item"><span class="cert-dot"></span>GEPT 全民英檢中級</div>
+    <div class="cert-item"><span class="cert-dot"></span>TQC-OA 中 / 英文輸入</div>
+    <div class="cert-item"><span class="cert-dot"></span>Microsoft IC3</div>
+  </div>
+</section>
+</div>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="container">
+    楊欣培 · Stephanie Yang · friendmail1993@yahoo.com.tw · 台中市東勢區
+    <br style="margin-bottom:6px">
+    <span style="opacity:0.5">Built with GitHub Pages · 2025</span>
+  </div>
+</footer>
 
 <script>
-    // Intersection Observer for scroll reveal
-    const sections = document.querySelectorAll('section');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const delay = entry.target.dataset.delay || 0;
-                setTimeout(() => entry.target.classList.add('visible'), +delay);
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-
-    sections.forEach(s => observer.observe(s));
-
-    // Subtle parallax on blobs
-    document.addEventListener('mousemove', (e) => {
-        const x = (e.clientX / window.innerWidth - 0.5) * 20;
-        const y = (e.clientY / window.innerHeight - 0.5) * 20;
-        document.querySelector('.blob-1').style.transform = `translate(${x}px, ${y}px)`;
-        document.querySelector('.blob-2').style.transform = `translate(${-x}px, ${-y}px)`;
-        document.querySelector('.blob-3').style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
     });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
