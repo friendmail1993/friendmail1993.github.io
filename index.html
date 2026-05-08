@@ -3,130 +3,322 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>楊欣培 Stephanie Yang | Data Analyst / Data Engineer</title>
+<title>楊欣培 Stephanie Yang | Data Engineer / Data Analyst</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;600&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@300;400;500&family=Noto+Serif+TC:wght@400;500;600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #1a1814;
-    --ink2: #3d3830;
-    --ink3: #7a7268;
-    --paper: #f5f0e8;
-    --paper2: #ede7d9;
-    --paper3: #e3dccf;
-    --accent: #c8531a;
-    --accent2: #8b3a10;
-    --teal: #1a6b5a;
-    --gold: #b8860b;
-    --rule: rgba(26,24,20,0.12);
-    --mono: 'DM Mono', monospace;
-    --serif: 'DM Serif Display', 'Noto Serif TC', serif;
-    --sans: 'Space Grotesk', sans-serif;
+    --ink: #0f0e0c;
+    --ink2: #2e2b26;
+    --ink3: #6b6560;
+    --paper: #f7f3ec;
+    --paper2: #ede8df;
+    --paper3: #e0d9ce;
+    --accent: #bf4e1a;
+    --accent2: #8a3510;
+    --teal: #1a6b58;
+    --gold: #a07820;
+    --violet: #5a3d7a;
+    --rule: rgba(15,14,12,0.10);
+    --mono: 'JetBrains Mono', monospace;
+    --serif: 'Cormorant Garamond', 'Noto Serif TC', serif;
+    --sans: 'Outfit', sans-serif;
+    --shadow: 0 2px 16px rgba(15,14,12,0.07);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
+
   body {
     background: var(--paper);
     color: var(--ink);
     font-family: var(--sans);
     font-size: 16px;
-    line-height: 1.7;
+    line-height: 1.75;
     overflow-x: hidden;
   }
 
-  body::before {
+  /* Subtle grain texture */
+  body::after {
     content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='none'/%3E%3Ccircle cx='1' cy='1' r='0.4' fill='%231a1814' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.6;
   }
 
   h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
-  .container { max-width: 900px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
-  section { padding: 80px 0; }
+  .mono { font-family: var(--mono); }
+
+  .container { max-width: 920px; margin: 0 auto; padding: 0 36px; position: relative; z-index: 1; }
+
+  section { padding: 88px 0; }
   section + section { border-top: 1px solid var(--rule); }
 
+  /* ── Nav ── */
   nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 14px 32px;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 12px 36px;
     display: flex; justify-content: space-between; align-items: center;
-    background: rgba(245,240,232,0.88);
-    backdrop-filter: blur(12px);
+    background: rgba(247,243,236,0.90);
+    backdrop-filter: blur(16px) saturate(1.2);
     border-bottom: 1px solid var(--rule);
   }
-  .nav-name { font-family: var(--mono); font-size: 0.82em; letter-spacing: 0.06em; color: var(--ink2); }
-  .nav-links { display: flex; gap: 24px; list-style: none; }
-  .nav-links a { font-family: var(--mono); font-size: 0.78em; color: var(--ink3); text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
+  .nav-name { font-family: var(--mono); font-size: 0.78em; letter-spacing: 0.08em; color: var(--ink2); }
+  .nav-links { display: flex; gap: 20px; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 0.74em; color: var(--ink3); text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
   .nav-links a:hover { color: var(--accent); }
 
-  #hero { padding: 140px 0 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; min-height: 88vh; }
-  .hero-overline { font-family: var(--mono); font-size: 0.75em; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
-  .hero-overline::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
-  h1.hero-name { font-size: clamp(2.8rem, 5vw, 4.2rem); color: var(--ink); margin-bottom: 4px; }
-  .hero-name-en { font-family: var(--mono); font-size: 0.9rem; color: var(--ink3); letter-spacing: 0.08em; margin-bottom: 28px; }
-  .hero-title { font-size: 1.05rem; color: var(--ink2); font-weight: 300; margin-bottom: 8px; }
+  /* ── Hero ── */
+  #hero {
+    padding: 148px 0 88px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 64px;
+    align-items: end;
+    min-height: 90vh;
+  }
+
+  .hero-overline {
+    font-family: var(--mono);
+    font-size: 0.72em; letter-spacing: 0.14em; color: var(--accent);
+    text-transform: uppercase; margin-bottom: 18px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-overline::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); }
+
+  h1.hero-name { font-size: clamp(3rem, 5.5vw, 4.6rem); color: var(--ink); margin-bottom: 2px; }
+  .hero-name-en { font-family: var(--mono); font-size: 0.85rem; color: var(--ink3); letter-spacing: 0.12em; margin-bottom: 30px; }
+
+  .hero-title { font-size: 1rem; color: var(--ink2); font-weight: 300; margin-bottom: 6px; }
   .hero-title strong { color: var(--accent); font-weight: 500; }
-  .hero-tagline { font-size: 0.88rem; color: var(--ink3); font-family: 'Noto Serif TC', serif; margin-bottom: 36px; border-left: 2px solid var(--paper3); padding-left: 14px; }
-  .hero-contacts { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
-  .contact-item { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 0.78em; color: var(--ink3); }
+
+  .hero-tagline {
+    font-size: 0.88rem; color: var(--ink3);
+    font-family: 'Noto Serif TC', serif; font-style: italic;
+    margin-bottom: 32px; line-height: 1.9;
+    border-left: 2px solid var(--paper3); padding-left: 16px;
+  }
+
+  /* Tags row */
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 28px; }
+  .htag {
+    font-family: var(--mono); font-size: 0.68em; letter-spacing: 0.04em;
+    padding: 3px 9px; border-radius: 20px;
+    background: var(--paper2); color: var(--ink3);
+    border: 1px solid var(--paper3);
+  }
+
+  .hero-contacts { display: flex; flex-direction: column; gap: 7px; margin-bottom: 28px; }
+  .contact-item { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 0.74em; color: var(--ink3); }
   .contact-item a { color: var(--teal); text-decoration: none; }
-  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 20px; font-family: var(--mono); font-size: 0.78em; border: 1px solid; border-radius: 2px; text-decoration: none; transition: all 0.2s; }
+  .contact-item a:hover { color: var(--accent); }
+
+  .hero-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 18px;
+    font-family: var(--mono); font-size: 0.75em; letter-spacing: 0.04em;
+    border: 1px solid; border-radius: 2px;
+    text-decoration: none; cursor: pointer; transition: all 0.2s;
+  }
   .btn-primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
   .btn-primary:hover { background: var(--accent); border-color: var(--accent); }
+  .btn-outline { background: transparent; color: var(--ink2); border-color: var(--paper3); }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-  .stat-card { background: var(--paper2); border: 1px solid var(--rule); border-radius: 2px; padding: 20px 24px; position: relative; }
-  .stat-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent); }
-  .stat-number { font-family: var(--serif); font-size: 2.2rem; color: var(--ink); line-height: 1; margin-bottom: 4px; }
-  .stat-label { font-size: 0.8rem; color: var(--ink3); }
+  /* hero right: stat cards */
+  .hero-right { display: flex; flex-direction: column; gap: 16px; padding-bottom: 8px; }
+  .stat-card {
+    background: var(--paper2); border: 1px solid var(--rule); border-radius: 3px;
+    padding: 20px 24px; position: relative; overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .stat-card::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent);
+  }
+  .stat-card.teal::before { background: var(--teal); }
+  .stat-card.gold::before { background: var(--gold); }
+  .stat-card.violet::before { background: var(--violet); }
+  .stat-number { font-family: var(--serif); font-size: 2.1rem; color: var(--ink); line-height: 1; margin-bottom: 4px; }
+  .stat-label { font-size: 0.76rem; color: var(--ink3); }
   .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stat-card.mini .stat-number { font-size: 1.45rem; }
 
-  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 48px; }
-  .section-num { font-family: var(--mono); font-size: 0.72em; color: var(--accent); letter-spacing: 0.08em; }
-  h2.section-title { font-size: 1.9rem; color: var(--ink); }
-  .section-rule { flex: 1; height: 1px; background: var(--rule); }
+  /* avail pill */
+  .avail-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--mono); font-size: 0.68em; letter-spacing: 0.06em;
+    padding: 5px 12px; border-radius: 20px;
+    border: 1px solid rgba(26,107,88,0.3);
+    background: rgba(26,107,88,0.06); color: var(--teal);
+    margin-bottom: 16px;
+  }
+  .avail-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.85)} }
 
-  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-  .skill-group-label { font-family: var(--mono); font-size: 0.72em; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--rule); }
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
-  .tag { font-family: var(--mono); font-size: 0.74em; padding: 4px 10px; border-radius: 2px; border: 1px solid; }
+  /* ── Section header ── */
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 52px; }
+  .section-num { font-family: var(--mono); font-size: 0.7em; color: var(--accent); letter-spacing: 0.1em; }
+  h2.section-title { font-size: 2rem; color: var(--ink); }
+  .section-rule { flex: 1; height: 1px; background: var(--rule); margin-left: 12px; }
+
+  /* ── Skills ── */
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .skill-group-label {
+    font-family: var(--mono); font-size: 0.68em; color: var(--accent);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--rule);
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-family: var(--mono); font-size: 0.7em;
+    padding: 3px 9px; border-radius: 2px; border: 1px solid;
+  }
   .tag-core { background: var(--ink); color: var(--paper); border-color: var(--ink); }
   .tag-mid  { background: var(--paper2); color: var(--ink2); border-color: var(--paper3); }
+  .tag-soft { background: transparent; color: var(--teal); border-color: rgba(26,107,88,0.28); }
+  .tag-ai   { background: rgba(90,61,122,0.08); color: var(--violet); border-color: rgba(90,61,122,0.25); }
 
-  .project-main { border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; margin-bottom: 40px; }
-  .project-header { background: var(--paper2); padding: 28px 32px; border-bottom: 1px solid var(--rule); }
-  .project-overline { font-family: var(--mono); font-size: 0.72em; color: var(--accent); margin-bottom: 8px; }
-  h3.project-title { font-size: 1.5rem; color: var(--ink); margin-bottom: 4px; }
-  .project-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-  .badge { font-family: var(--mono); font-size: 0.7em; padding: 3px 8px; border-radius: 2px; background: rgba(200,83,26,0.1); color: var(--accent2); border: 1px solid rgba(200,83,26,0.2); }
+  /* ── Projects ── */
+  .project-main {
+    border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; margin-bottom: 24px;
+    box-shadow: var(--shadow);
+  }
+  .project-header {
+    background: var(--paper2); padding: 28px 32px;
+    border-bottom: 1px solid var(--rule);
+    display: grid; grid-template-columns: 1fr auto; align-items: start; gap: 20px;
+  }
+  .project-overline { font-family: var(--mono); font-size: 0.68em; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
+  h3.project-title { font-size: 1.55rem; color: var(--ink); margin-bottom: 4px; }
+  .project-title-en { font-family: var(--mono); font-size: 0.72em; color: var(--ink3); }
+  .project-badges { display: flex; flex-wrap: wrap; gap: 5px; }
+  .badge { font-family: var(--mono); font-size: 0.67em; padding: 2px 7px; border-radius: 2px; }
+  .badge-tech { background: rgba(191,78,26,0.1); color: var(--accent2); border: 1px solid rgba(191,78,26,0.2); }
+  .badge-cloud { background: rgba(26,107,88,0.1); color: var(--teal); border: 1px solid rgba(26,107,88,0.2); }
+  .badge-ai { background: rgba(90,61,122,0.1); color: var(--violet); border: 1px solid rgba(90,61,122,0.22); }
+  .badge-wip { background: rgba(160,120,32,0.12); color: var(--gold); border: 1px solid rgba(160,120,32,0.25); }
+
   .project-body { padding: 28px 32px; }
-  .star-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  .star-label { font-family: var(--mono); font-size: 0.68em; color: var(--accent); margin-bottom: 6px; text-transform: uppercase; }
-  .star-text { font-size: 0.88rem; color: var(--ink2); }
 
-  .exp-item { display: grid; grid-template-columns: 140px 1fr; gap: 32px; padding: 32px 0; border-bottom: 1px solid var(--rule); }
-  .exp-date { font-family: var(--mono); font-size: 0.72em; color: var(--ink3); }
-  .exp-role { font-size: 1.05rem; font-weight: 500; color: var(--ink); }
-  .exp-points { list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
-  .exp-points li { font-size: 0.88rem; color: var(--ink2); padding-left: 16px; position: relative; }
+  /* ETL flow */
+  .etl-flow {
+    background: var(--paper3); border-radius: 2px;
+    padding: 18px 22px; display: flex; align-items: center;
+    margin-bottom: 28px; overflow-x: auto; gap: 0;
+  }
+  .etl-step { display: flex; flex-direction: column; align-items: center; min-width: 118px; text-align: center; }
+  .etl-label { font-family: var(--mono); font-size: 0.64em; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
+  .etl-tools { font-size: 0.76em; color: var(--ink2); line-height: 1.55; }
+  .etl-arrow { font-family: var(--mono); color: var(--ink3); font-size: 1.1em; flex-shrink: 0; padding: 0 4px; }
+
+  /* STAR grid */
+  .star-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 28px; }
+  .star-label { font-family: var(--mono); font-size: 0.64em; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
+  .star-text { font-size: 0.86rem; color: var(--ink2); line-height: 1.7; }
+  .star-text strong { color: var(--ink); }
+
+  /* PBI placeholder */
+  .pbi-placeholder {
+    background: var(--paper3); border: 2px dashed var(--rule); border-radius: 2px;
+    height: 200px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 8px; color: var(--ink3); margin-bottom: 0;
+  }
+  .pbi-caption { font-family: var(--mono); font-size: 0.72em; }
+  .pbi-sub { font-size: 0.76em; }
+
+  /* GitHub strip */
+  .github-strip {
+    display: flex; align-items: center; gap: 14px;
+    padding: 12px 18px; background: var(--ink); color: var(--paper);
+    border-radius: 2px; margin-top: 18px;
+    font-family: var(--mono); font-size: 0.74em;
+  }
+  .github-strip a { color: rgba(247,243,236,0.7); text-decoration: none; margin-left: auto; transition: color 0.2s; }
+  .github-strip a:hover { color: var(--accent); }
+  .commits { color: var(--accent); font-weight: 500; }
+
+  /* Minor project card */
+  .project-minor {
+    border: 1px solid var(--rule); border-radius: 3px;
+    padding: 24px 28px; margin-bottom: 16px;
+    display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start;
+    box-shadow: var(--shadow);
+  }
+  .project-minor-title { font-family: var(--serif); font-size: 1.25rem; margin-bottom: 4px; }
+  .project-minor-sub { font-family: var(--mono); font-size: 0.72em; color: var(--ink3); margin-bottom: 10px; }
+  .project-minor-body { font-size: 0.85rem; color: var(--ink2); line-height: 1.7; margin-bottom: 12px; }
+
+  /* ── Experience ── */
+  .exp-item {
+    display: grid; grid-template-columns: 148px 1fr; gap: 32px;
+    padding: 32px 0; border-bottom: 1px solid var(--rule);
+  }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-date { font-family: var(--mono); font-size: 0.7em; color: var(--ink3); margin-bottom: 5px; }
+  .exp-company { font-size: 0.8rem; color: var(--ink2); font-weight: 500; }
+  .exp-role { font-size: 1.02rem; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+  .exp-role-en { font-family: var(--mono); font-size: 0.7em; color: var(--ink3); margin-bottom: 11px; }
+  .exp-points { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .exp-points li {
+    font-size: 0.86rem; color: var(--ink2); line-height: 1.7;
+    padding-left: 16px; position: relative;
+  }
   .exp-points li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-family: var(--mono); }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 11px; }
 
-  .edu-card { padding: 24px; background: var(--paper2); border: 1px solid var(--rule); border-radius: 2px; }
-  .certs-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
-  .cert-item { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid var(--rule); border-radius: 2px; font-size: 0.82rem; }
-  .cert-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  /* ── Education ── */
+  .edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .edu-card {
+    padding: 22px; background: var(--paper2);
+    border: 1px solid var(--rule); border-radius: 3px;
+    box-shadow: var(--shadow);
+  }
+  .edu-period { font-family: var(--mono); font-size: 0.68em; color: var(--ink3); margin-bottom: 7px; }
+  .edu-school { font-family: var(--serif); font-size: 1.1rem; margin-bottom: 3px; }
+  .edu-dept { font-size: 0.8rem; color: var(--ink2); }
 
-  footer { padding: 40px 0; border-top: 1px solid var(--rule); text-align: center; font-family: var(--mono); font-size: 0.72em; color: var(--ink3); }
-  .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .certs-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  .cert-item {
+    display: flex; align-items: center; gap: 7px;
+    padding: 6px 13px; border: 1px solid var(--rule); border-radius: 2px;
+    font-size: 0.8rem; color: var(--ink2);
+  }
+  .cert-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+  /* ── AI Abilities callout ── */
+  .ai-callout {
+    background: rgba(90,61,122,0.05);
+    border: 1px solid rgba(90,61,122,0.18);
+    border-left: 3px solid var(--violet);
+    border-radius: 2px; padding: 20px 24px; margin-top: 32px;
+  }
+  .ai-callout-title { font-family: var(--mono); font-size: 0.7em; color: var(--violet); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+  .ai-abilities { display: flex; flex-direction: column; gap: 6px; }
+  .ai-ability { display: flex; gap: 10px; font-size: 0.83rem; color: var(--ink2); line-height: 1.6; }
+  .ai-ability::before { content: '◆'; color: var(--violet); font-size: 0.55em; flex-shrink: 0; margin-top: 6px; }
+
+  /* ── Footer ── */
+  footer {
+    padding: 36px 0; border-top: 1px solid var(--rule);
+    text-align: center; font-family: var(--mono); font-size: 0.7em; color: var(--ink3); letter-spacing: 0.04em;
+  }
+
+  /* ── Fade animations ── */
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
   .fade-in.visible { opacity: 1; transform: none; }
 
-  @media (max-width: 700px) {
-    #hero { grid-template-columns: 1fr; padding-top: 110px; }
-    .skills-grid, .star-grid, .exp-item { grid-template-columns: 1fr; }
+  /* ── Responsive ── */
+  @media (max-width: 740px) {
+    #hero { grid-template-columns: 1fr; gap: 40px; padding-top: 116px; min-height: auto; }
+    .skills-grid, .edu-grid { grid-template-columns: 1fr; }
+    .star-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 8px; }
+    .project-header { grid-template-columns: 1fr; }
+    nav { padding: 10px 20px; }
+    .container { padding: 0 20px; }
+    section { padding: 60px 0; }
   }
 </style>
 </head>
@@ -142,214 +334,483 @@
   </ul>
 </nav>
 
+<!-- ── Hero ── -->
 <div class="container">
 <section id="hero">
   <div class="hero-left fade-in">
-    <div class="hero-overline">Technical Translator / Data Specialist</div>
+    <div class="avail-pill"><span class="avail-dot"></span>可上班日 2026/06/01 · 月薪期望 45,000+</div>
+    <div class="hero-overline">Data Engineer / Data Analyst</div>
     <h1 class="hero-name">楊欣培</h1>
     <div class="hero-name-en">STEPHANIE YANG</div>
+
     <p class="hero-title">
-      <strong>數據工程與分析師 | 技術轉譯者</strong><br>
-      專案管理經驗 × AI 賦能 × 資料工程實作 [cite: 216]
+      <strong>資料工程師 · 資料分析師</strong><br>
+      商管背景 × 技術實作 × AI 賦能應用
     </p>
     <p class="hero-tagline">
-      憑藉深厚的跨部門溝通經驗，擅長將複雜業務需求精準轉譯為數據模型，<br>
-      透過 AI 工具與自動化流程，為團隊創造實質商業價值。 [cite: 218]
+      3年專案管理經驗，轉型為數據工程與分析的技術轉譯者。<br>
+      以應英系訓練的溝通力，結合 ETL Pipeline、SQL、Power BI、<br>
+      n8n 自動化的完整技術鏈，將數據轉化為商業決策洞察。
     </p>
-    <div class="hero-contacts">
-      <div class="contact-item"><span>✉</span><a href="mailto:friendmail1993@yahoo.com.tw">friendmail1993@yahoo.com.tw</a> [cite: 235]</div>
-      <div class="contact-item"><span>📍</span><span>台中市東勢區</span> [cite: 227]</div>
+
+    <div class="hero-tags">
+      <span class="htag">#學習力強</span>
+      <span class="htag">#邏輯清晰</span>
+      <span class="htag">#善於溝通</span>
+      <span class="htag">#同理心</span>
+      <span class="htag">#AI應用</span>
     </div>
+
+    <div class="hero-contacts">
+      <div class="contact-item"><span>✉</span><a href="mailto:friendmail1993@gmail.com">friendmail1993@gmail.com</a></div>
+      <div class="contact-item"><span>📍</span><span>台中市東勢區</span></div>
+      <div class="contact-item"><span>📞</span><span>0912-625-188</span></div>
+    </div>
+
     <div class="hero-btns">
-      <a class="btn btn-primary" href="friendmail1993.github.io" target="_blank">⬡ 個人網頁</a> [cite: 219]
-      <a class="btn btn-outline" href="https://github.com/friendmail1993">GitHub</a>
+      <a class="btn btn-primary" href="https://github.com/friendmail1993" target="_blank">⬡ GitHub</a>
+      <a class="btn btn-outline" href="https://friendmail1993.github.io" target="_blank">🌐 個人網頁</a>
+      <a class="btn btn-outline" href="mailto:friendmail1993@gmail.com">聯絡我</a>
     </div>
   </div>
-  <div class="hero-right fade-in">
+
+  <div class="hero-right fade-in" style="transition-delay:0.15s">
     <div class="stat-card">
-      <div class="stat-number">100%</div>
-      <div class="stat-label">AI 自動化營運鏈路達成 [cite: 389]</div>
+      <div class="stat-number">122,200+</div>
+      <div class="stat-label">Records processed across ETL pipeline</div>
     </div>
     <div class="stats-row">
-      <div class="stat-card">
-        <div class="stat-number">12w+</div>
-        <div class="stat-label">數據清洗與時序正規化實作 [cite: 396]</div>
+      <div class="stat-card mini teal">
+        <div class="stat-number">17</div>
+        <div class="stat-label">Star Schema tables<br>on Azure SQL</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-number">24/7</div>
-        <div class="stat-label">Webhook 自動化管理系統 [cite: 342]</div>
+      <div class="stat-card mini">
+        <div class="stat-number">187</div>
+        <div class="stat-label">GitHub commits<br>（4 人協作）</div>
       </div>
+    </div>
+    <div class="stat-card mini gold">
+      <div class="stat-number">2018–2026</div>
+      <div class="stat-label">Data time span · 10+ open government sources integrated</div>
+    </div>
+    <div class="stat-card mini violet">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">AI 行銷自動化達成率 · 每週固定發文</div>
     </div>
   </div>
 </section>
+</div>
 
+<!-- ── Skills ── -->
+<div class="container">
 <section id="skills">
   <div class="section-header fade-in">
     <span class="section-num">01</span>
-    <h2 class="section-title">技術專長</h2>
+    <h2 class="section-title">技術技能</h2>
     <div class="section-rule"></div>
   </div>
+
   <div class="skills-grid">
     <div class="skill-group fade-in">
       <div class="skill-group-label">Data Engineering</div>
       <div class="skill-tags">
-        <span class="tag tag-core">T-SQL / MS SQL Server</span> [cite: 335]
-        <span class="tag tag-core">Joins / CTE / Subqueries</span> [cite: 336]
-        <span class="tag tag-core">Window Functions</span> [cite: 337]
-        <span class="tag tag-mid">Stored Procedure / Trigger</span> [cite: 337]
+        <span class="tag tag-core">T-SQL / SQL Server</span>
+        <span class="tag tag-core">ETL Pipeline</span>
+        <span class="tag tag-core">Star Schema</span>
+        <span class="tag tag-mid">Stored Procedure</span>
+        <span class="tag tag-mid">Window Functions</span>
+        <span class="tag tag-mid">Azure SQL DB</span>
       </div>
     </div>
-    <div class="skill-group fade-in">
+    <div class="skill-group fade-in" style="transition-delay:0.07s">
+      <div class="skill-group-label">Data Analysis & Viz</div>
+      <div class="skill-tags">
+        <span class="tag tag-core">Power BI</span>
+        <span class="tag tag-core">DAX</span>
+        <span class="tag tag-mid">Power Query</span>
+        <span class="tag tag-mid">Python (Pandas)</span>
+        <span class="tag tag-mid">NumPy</span>
+        <span class="tag tag-mid">yfinance</span>
+        <span class="tag tag-mid">Selenium</span>
+        <span class="tag tag-mid">Excel</span>
+      </div>
+    </div>
+    <div class="skill-group fade-in" style="transition-delay:0.14s">
       <div class="skill-group-label">AI & Automation</div>
       <div class="skill-tags">
-        <span class="tag tag-core">n8n Workflow</span> [cite: 330]
-        <span class="tag tag-core">Gemini LLM API</span> [cite: 333]
-        <span class="tag tag-core">Prompt Engineering</span> [cite: 331]
-        <span class="tag tag-mid">Flask / Webhook</span> [cite: 342]
+        <span class="tag tag-ai">n8n 自動化</span>
+        <span class="tag tag-ai">LLM API (Gemini)</span>
+        <span class="tag tag-ai">Prompt Engineering</span>
+        <span class="tag tag-ai">Flask / Webhook</span>
+        <span class="tag tag-mid">LINE Bot API</span>
+        <span class="tag tag-mid">Notion API</span>
+        <span class="tag tag-mid">Threads API</span>
+        <span class="tag tag-mid">JavaScript</span>
       </div>
     </div>
-    <div class="skill-group fade-in">
-      <div class="skill-group-label">Analysis & Tools</div>
+    <div class="skill-group fade-in" style="transition-delay:0.21s">
+      <div class="skill-group-label">Tools & Workflow</div>
       <div class="skill-tags">
-        <span class="tag tag-core">Power BI / DAX</span> [cite: 343]
-        <span class="tag tag-core">Python Pandas / NumPy</span> [cite: 340]
-        <span class="tag tag-mid">GitHub / ETL Pipeline</span> [cite: 347]
+        <span class="tag tag-mid">GitHub / VS Code</span>
+        <span class="tag tag-soft">專案管理</span>
+        <span class="tag tag-soft">技術簡報</span>
+        <span class="tag tag-soft">英文讀寫</span>
+        <span class="tag tag-soft">跨部門溝通</span>
       </div>
     </div>
   </div>
-</section>
 
+  <!-- AI 能力 callout -->
+  <div class="ai-callout fade-in" style="transition-delay:0.1s">
+    <div class="ai-callout-title">AI 賦能核心能力</div>
+    <div class="ai-abilities">
+      <div class="ai-ability">全鏈路 AI 自動化開發：使用 n8n 作為自動化核心，串接 RSS、Gemini LLM 與 Threads 等 API，實現異質系統間的完整閉環流程。</div>
+      <div class="ai-ability">提示詞工程（Prompt Engineering）：設計精準 LLM Prompts，實現特定角色人設與風格化文案產出。</div>
+      <div class="ai-ability">LLM API 實務整合：具備串接 Google Gemini 等大語言模型 API 的經驗，能處理 JSON 格式數據交換。</div>
+      <div class="ai-ability">AI 協作自學力：運用 AI 工具作為「數位私人導師」，自主考取 iPAS AI 應用規劃師（初級）證照。</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ── Projects ── -->
+<div class="container">
 <section id="projects">
   <div class="section-header fade-in">
     <span class="section-num">02</span>
-    <h2 class="section-title">專案成就</h2>
+    <h2 class="section-title">專題作品</h2>
     <div class="section-rule"></div>
   </div>
 
+  <!-- Project 1: AI 行銷自動化 (NEW) -->
   <div class="project-main fade-in">
     <div class="project-header">
-      <div class="project-overline">AI 自動化營運 · 2026</div>
-      <h3 class="project-title">Threads 寵物品牌新聞專欄自動化系統</h3> [cite: 382]
+      <div>
+        <div class="project-overline">Side Project · 2026/05 — 進行中</div>
+        <h3 class="project-title">AI 行銷自動化系統</h3>
+        <div class="project-title-en">Threads Pet Brand News Column & Engagement Growth via n8n × Gemini</div>
+      </div>
       <div class="project-badges">
-        <span class="badge">n8n</span><span class="badge">Google Gemini API</span><span class="badge">Threads API</span><span class="badge">Prompt Engineering</span> [cite: 330, 331]
+        <span class="badge badge-ai">n8n</span>
+        <span class="badge badge-ai">Google Gemini API</span>
+        <span class="badge badge-ai">Prompt Engineering</span>
+        <span class="badge badge-tech">JavaScript</span>
+        <span class="badge badge-tech">Threads API</span>
+        <span class="badge badge-tech">RSS Feed</span>
+        <span class="badge badge-wip">Work in Progress</span>
       </div>
     </div>
     <div class="project-body">
+      <div class="etl-flow">
+        <div class="etl-step">
+          <div class="etl-label">Monitor</div>
+          <div class="etl-tools">RSS Feed<br>Google News<br>寵物關鍵字</div>
+        </div>
+        <div class="etl-arrow">→</div>
+        <div class="etl-step">
+          <div class="etl-label">Process</div>
+          <div class="etl-tools">JavaScript<br>Code Node<br>Prompt 建構</div>
+        </div>
+        <div class="etl-arrow">→</div>
+        <div class="etl-step">
+          <div class="etl-label">Generate</div>
+          <div class="etl-tools">Gemini API<br>風格化改寫<br>400字文案</div>
+        </div>
+        <div class="etl-arrow">→</div>
+        <div class="etl-step">
+          <div class="etl-label">Publish</div>
+          <div class="etl-tools">Threads API<br>自動留言<br>Wait Node</div>
+        </div>
+      </div>
       <div class="star-grid">
         <div class="star-item">
-          <div class="star-label">Situation</div>
-          <div class="star-text">針對寵物品牌產出內容極其耗時，需實現全自動化的新聞監測與風格改寫。 [cite: 383, 384]</div>
+          <div class="star-label">Situation · Task</div>
+          <div class="star-text">寵物友善計程車品牌需固定產出具專業度與在地感的社群內容，但手動篩選新聞與改寫文案極其耗時，需建立全自動化流程。</div>
         </div>
         <div class="star-item">
           <div class="star-label">Action</div>
-          <div class="star-text">以 n8n 為核心串接 RSS、Gemini LLM API 與 Threads API，設計精準 Prompt 實現特定「熱血司機」人設文案。 [cite: 330, 387, 388]</div>
+          <div class="star-text">使用 <strong>RSS Feed 節點</strong>自動監控 Google News 寵物關鍵字，以 <strong>JavaScript Code Node</strong> 進行數據清洗與精準 Prompt 建構，串接 <strong>Google Gemini API</strong> 實現「熱血司機」人設的 400 字風格改寫，調用 <strong>Threads API</strong> 搭配定時器確保自動留言引流邏輯。</div>
         </div>
         <div class="star-item">
           <div class="star-label">Result</div>
-          <div class="star-text">達成 100% 自動化運作，每日節省約 1 小時作業時間，並有效提升貼文留言率。 [cite: 389, 390]</div>
+          <div class="star-text">達成 <strong>100% 自動化運作</strong>，每週三、五固定發文，省下每日約 1 小時的資料蒐集與撰文時間；透過自動生成互動問題，有效提升貼文留言率。</div>
+        </div>
+        <div class="star-item">
+          <div class="star-label">Key Technical Achievement</div>
+          <div class="star-text">完整實踐「監測→處理→生成→發佈→互動」閉環自動化流程設計，展現跨 API 異質系統整合能力與 LLM 提示詞工程實戰能力。</div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Project 2: 神山下的民生圖譜 -->
   <div class="project-main fade-in">
     <div class="project-header">
-      <div class="project-overline">數據關聯研究 · 2026</div>
-      <h3 class="project-title">神山下的民生圖譜：台積電股價與民生消費研究</h3> [cite: 392, 393]
+      <div>
+        <div class="project-overline">Capstone Project · 2026/01 — 2026/04</div>
+        <h3 class="project-title">神山下的民生圖譜</h3>
+        <div class="project-title-en">TSMC Stock Price & Taiwan Consumer Industry Correlation Study</div>
+      </div>
       <div class="project-badges">
-        <span class="badge">SQL Server</span><span class="badge">Python Pandas</span><span class="badge">Power BI</span><span class="badge">ETL</span> [cite: 394]
+        <span class="badge badge-tech">ETL Pipeline</span>
+        <span class="badge badge-tech">T-SQL</span>
+        <span class="badge badge-tech">Python</span>
+        <span class="badge badge-tech">DAX</span>
+        <span class="badge badge-tech">Power BI</span>
+        <span class="badge badge-cloud">Azure SQL</span>
+        <span class="badge badge-cloud">Star Schema</span>
       </div>
     </div>
     <div class="project-body">
+      <div class="etl-flow">
+        <div class="etl-step">
+          <div class="etl-label">Extract</div>
+          <div class="etl-tools">Python Selenium<br>yfinance / requests<br>10+ 政府平台</div>
+        </div>
+        <div class="etl-arrow">→</div>
+        <div class="etl-step">
+          <div class="etl-label">Transform</div>
+          <div class="etl-tools">Python Pandas<br>T-SQL 清洗<br>時序正規化</div>
+        </div>
+        <div class="etl-arrow">→</div>
+        <div class="etl-step">
+          <div class="etl-label">Load</div>
+          <div class="etl-tools">Azure SQL DB<br>17 張資料表<br>Star Schema</div>
+        </div>
+        <div class="etl-arrow">→</div>
+        <div class="etl-step">
+          <div class="etl-label">Visualize</div>
+          <div class="etl-tools">Power BI<br>DAX Measures<br>Pearson r</div>
+        </div>
+      </div>
       <div class="star-grid">
         <div class="star-item">
-          <div class="star-label">Situation</div>
-          <div class="star-text">分析大型產業動能對地方民生消費（餐飲業銷售、超商密度）的量化影響。 [cite: 393, 396]</div>
+          <div class="star-label">Situation · Task</div>
+          <div class="star-text">探究台積電股價飆漲是否對台灣食衣住行產生可量化影響，但各政府資料平台格式不一、時間粒度不同（日級股價 vs 月級民生指標），無法直接關聯。</div>
         </div>
         <div class="star-item">
-          <div class="star-label">Key Work</div>
-          <div class="star-text">整合台積電股價、超商密度等多來源異質資料，運用 T-SQL 進行時序分析與數據清洗。 [cite: 396]</div>
+          <div class="star-label">Action</div>
+          <div class="star-text">建立完整 ETL Pipeline，整合 <strong>10+ 開放資料平台</strong>，以 Python（Selenium、Pandas）清洗原始資料，透過 <strong>T-SQL 時序正規化</strong>解決粒度對齊問題，將 <strong>122,200+ 筆</strong>資料匯入 Azure SQL Database，設計含 <strong>17 張表的 Star Schema</strong>，並以自訂 <strong>DAX 公式</strong>計算 Pearson 相關係數及領先/落後指標。</div>
         </div>
         <div class="star-item">
-          <div class="star-label">Outcome</div>
-          <div class="star-text">透過 Power BI 呈現股價與民生經濟之關聯性視覺化，提供具商業洞察力的互動儀表板。 [cite: 343, 344]</div>
+          <div class="star-label">Result</div>
+          <div class="star-text">在 Power BI 呈現台積電股價與餐飲業、超商營業額的時序關聯視覺化報表，透過大事記工具提示（COVID-19、ChatGPT 等關鍵事件）提供脈絡化洞察；<strong>4 人協作 187 commits</strong>，展現團隊版本管理紀律。</div>
         </div>
+        <div class="star-item">
+          <div class="star-label">Key Technical Achievement</div>
+          <div class="star-text">自製 Python GUI 工具（tkinter）批次將 Excel 轉為 UTF-8 CSV 並直接上傳 SQL Server，解決重複性資料匯入痛點；自訂 DimDate 時間維度表，支援季 / 月 / 日多層級分析。</div>
+        </div>
+      </div>
+      <div class="pbi-placeholder">
+        <div style="font-size:2em">📊</div>
+        <div class="pbi-caption">Power BI Dashboard Preview</div>
+        <div class="pbi-sub">截圖 / 互動報表即將上線</div>
+      </div>
+      <div class="github-strip">
+        <span>⬡ GitHub</span>
+        <span class="commits">187 commits</span>
+        <span style="color:rgba(247,243,236,0.45)">4 contributors · Python · SQL · Power BI</span>
+        <a href="https://github.com/Eri579/260321_nNiseproj" target="_blank">查看專案 →</a>
       </div>
     </div>
   </div>
-</section>
 
+  <!-- Project 3: LINE Bot -->
+  <div class="project-minor fade-in">
+    <div>
+      <div class="project-overline" style="font-family:var(--mono);font-size:0.68em;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:7px;">Side Project</div>
+      <div class="project-minor-title">LINE Bot 自動記帳系統</div>
+      <div class="project-minor-sub">Automated Bookkeeping via LINE × Notion API · Flask Webhook</div>
+      <p class="project-minor-body">串接 LINE Messaging API 與 Notion Database API，在 LINE 對話中輸入品項與金額，自動寫入 Notion 資料庫，實現 24/7 自動化營運管理系統。規劃未來整合 POS 系統，每月自動產出收支 Power BI 報表。</p>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;">
+        <span class="badge badge-tech">LINE API</span>
+        <span class="badge badge-tech">Notion API</span>
+        <span class="badge badge-tech">Python · Flask</span>
+        <span class="badge badge-tech">Webhook</span>
+      </div>
+    </div>
+    <span class="badge badge-wip" style="white-space:nowrap">Work in Progress</span>
+  </div>
+</section>
+</div>
+
+<!-- ── Experience ── -->
+<div class="container">
 <section id="experience">
   <div class="section-header fade-in">
     <span class="section-num">03</span>
     <h2 class="section-title">工作經歷</h2>
     <div class="section-rule"></div>
   </div>
+
   <div class="exp-list">
+
     <div class="exp-item fade-in">
-      <div class="exp-date">2023/02 — 2025/12</div>
-      <div class="exp-company">梧賴咖啡工作室</div> [cite: 272]
+      <div class="exp-meta">
+        <div class="exp-date">2025/12 — 2026/04</div>
+        <div class="exp-company">勞動部職訓班（全日制）</div>
+      </div>
       <div class="exp-right">
-        <div class="exp-role">經營管理主管</div> [cite: 268]
+        <div class="exp-role">學員 · 資料工程師培訓</div>
+        <div class="exp-role-en">Python 人工智慧與數據分析班 · 5 個月密集訓練</div>
         <ul class="exp-points">
-          <li>主導店面營運與青年提案參與，具備豐富的商業營運實務經驗。 [cite: 269, 271]</li>
-          <li>接洽政府單位、公司與學校之課程合作，負責專案開發與執行。 [cite: 270]</li>
-          <li>自主開發 24/7 自動化營運管理系統 (LINE Bot + Notion API)，解決報帳痛點。 [cite: 342]</li>
+          <li>掌握 MS SQL Server 與 T-SQL：Joins、Subqueries、CTE、Window Functions、Stored Procedure、Trigger</li>
+          <li>Python 數據處理：Pandas、NumPy 特徵工程，Requests 爬蟲自動化獲取外部市場數據</li>
+          <li>Power BI 完整實作：Power Query ETL → DAX 複雜度量值 → 動態互動儀表板</li>
+          <li>GitHub 版本控管與團隊協作，執行 Capstone Project（神山下的民生圖譜）</li>
         </ul>
+        <div class="exp-tags">
+          <span class="tag tag-core">SQL</span>
+          <span class="tag tag-core">Python</span>
+          <span class="tag tag-core">Power BI</span>
+          <span class="tag tag-mid">ETL</span>
+          <span class="tag tag-mid">GitHub</span>
+        </div>
       </div>
     </div>
+
     <div class="exp-item fade-in">
-      <div class="exp-date">2020/05 — 2023/02</div>
-      <div class="exp-company">台灣社區重建協會</div> [cite: 291]
+      <div class="exp-meta">
+        <div class="exp-date">2023/02 — 2025/12</div>
+        <div class="exp-company">梧賴咖啡工作室</div>
+      </div>
       <div class="exp-right">
-        <div class="exp-role">專案經理</div> [cite: 277]
+        <div class="exp-role">共同經營者 · 行銷業務</div>
+        <div class="exp-role-en">Co-Owner & Marketing · 2 年 11 個月</div>
         <ul class="exp-points">
-          <li>獨立執行多項文化部標案，涵蓋計畫撰寫、進度控管至期末結案核銷。 [cite: 278, 280, 291]</li>
-          <li>規劃並辦理 20 餘場線上/實體培力課程，具備強大的溝通協調與專案韌性。 [cite: 406]</li>
+          <li>主導店面營運、社群行銷與客戶關係管理，累積穩定回客群</li>
+          <li>接洽政府單位、學校及企業咖啡課程，拓展 B2B 業務</li>
+          <li>參與地方青年提案，具備社區資源整合能力</li>
+          <li>以小型商業實務視角驗證資料分析工具的落地價值（LINE Bot 記帳系統開發動機）</li>
         </ul>
+        <div class="exp-tags">
+          <span class="tag tag-mid">業務開發</span>
+          <span class="tag tag-mid">社群經營</span>
+          <span class="tag tag-mid">活動規劃</span>
+        </div>
       </div>
     </div>
+
     <div class="exp-item fade-in">
-      <div class="exp-date">2016/07 — 2017/11</div>
-      <div class="exp-company">中欣商務精品飯店</div> [cite: 298, 300]
+      <div class="exp-meta">
+        <div class="exp-date">2020/05 — 2023/02</div>
+        <div class="exp-company">台灣社區重建協會</div>
+      </div>
       <div class="exp-right">
-        <div class="exp-role">櫃檯副組長</div> [cite: 297]
+        <div class="exp-role">專案經理</div>
+        <div class="exp-role-en">Project Manager · Community Development · 2 年 10 個月</div>
         <ul class="exp-points">
-          <li>管理 5-8 人團隊，處理國際訂單與 OTA 控管，具備跨語言溝通能力。 [cite: 303, 308, 309]</li>
+          <li>獨立撰寫並執行 <strong>6+ 項</strong>文化部 / 文化局補助標案，計畫書、期中末報告全程負責</li>
+          <li>規劃並執行成果展 6 場、社區深度小旅行 2 場、線上直播培力課程 18 堂（YouTube）</li>
+          <li>跨部門協調后里區、新社區公所及各社區組織，具備多方利害關係人溝通經驗</li>
+          <li>獨力製作專案成果影片，具備視覺化敘事能力</li>
         </ul>
+        <div class="exp-tags">
+          <span class="tag tag-mid">專案管理</span>
+          <span class="tag tag-mid">政府標案</span>
+          <span class="tag tag-mid">活動執行</span>
+          <span class="tag tag-soft">跨組織溝通</span>
+        </div>
       </div>
     </div>
+
+    <div class="exp-item fade-in">
+      <div class="exp-meta">
+        <div class="exp-date">2016/07 — 2017/11</div>
+        <div class="exp-company">中欣商務精品飯店</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">櫃檯副組長</div>
+        <div class="exp-role-en">Front Desk Supervisor · 1 年 5 個月 · 管理 5–8 人</div>
+        <ul class="exp-points">
+          <li>管理 5–8 人櫃台團隊，負責排班、新人教育訓練</li>
+          <li>處理國內外訂單及 OTA 控管，具備跨語言客服能力（中 / 英）</li>
+          <li>客訴處理與危機應對，提升顧客滿意度</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag tag-mid">團隊管理</span>
+          <span class="tag tag-mid">英語客服</span>
+          <span class="tag tag-soft">客訴處理</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div class="exp-meta">
+        <div class="exp-date">2019/03 — 2019/11</div>
+        <div class="exp-company">Sutton Farm，澳洲</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">蔬果品管包裝員</div>
+        <div class="exp-role-en">Fruit & Vegetable QC / Packer · Australia · 9 個月</div>
+        <ul class="exp-points">
+          <li>蔬果品管及包裝，跨文化國際工作環境</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag tag-soft">國際視野</span>
+          <span class="tag tag-soft">跨文化溝通</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
+</div>
 
+<!-- ── Education ── -->
+<div class="container">
 <section id="education">
   <div class="section-header fade-in">
     <span class="section-num">04</span>
-    <h2 class="section-title">教育與證照</h2>
+    <h2 class="section-title">學歷 · 訓練 · 證照</h2>
     <div class="section-rule"></div>
   </div>
-  <div class="edu-card fade-in">
-    <strong>勞動力發展署 Python 人工智慧與數據分析班</strong> | 2026 完訓 [cite: 215, 253]
-    <p style="font-size:0.85rem;color:var(--ink3)">專注於從底層資料邏輯到前端視覺化的完整鏈路開發訓練。 [cite: 254]</p>
+
+  <div class="edu-grid fade-in">
+    <div class="edu-card">
+      <div class="edu-period">2026/04 完訓</div>
+      <div class="edu-school">勞動部職業訓練</div>
+      <div class="edu-dept">Python 人工智慧與數據分析班<br>
+        <span style="font-size:0.82em;color:var(--ink3)">SQL · Python · Power BI · DAX · ETL</span>
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-period">2012 — 2016</div>
+      <div class="edu-school">國立勤益科技大學</div>
+      <div class="edu-dept">應用英語系 · 四技畢業</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-period">2009 — 2012</div>
+      <div class="edu-school">國立豐原高商</div>
+      <div class="edu-dept">商經科 · 高職畢業</div>
+    </div>
   </div>
+
   <div class="certs-grid fade-in">
-    <div class="cert-item"><span class="cert-dot"></span>iPAS AI 應用規劃師 (初級) [cite: 358]</div>
-    <div class="cert-item"><span class="cert-dot"></span>Google 負責任 AI 技術課程認證 [cite: 354]</div>
-    <div class="cert-item"><span class="cert-dot"></span>Microsoft IC3 計算機能力認證 [cite: 352]</div>
-    <div class="cert-item"><span class="cert-dot"></span>TOEIC 多益測驗 670 [cite: 323]</div>
-    <div class="cert-item"><span class="cert-dot"></span>丙級電腦軟體應用 [cite: 360]</div>
+    <div class="cert-item"><span class="cert-dot" style="background:var(--violet)"></span>iPAS AI 應用規劃師 初級</div>
+    <div class="cert-item"><span class="cert-dot" style="background:var(--teal)"></span>Google 負責任 AI 技術課程認證</div>
+    <div class="cert-item"><span class="cert-dot"></span>Microsoft IC3</div>
+    <div class="cert-item"><span class="cert-dot"></span>丙級電腦軟體應用技術士</div>
+    <div class="cert-item"><span class="cert-dot"></span>丙級門市服務技術士</div>
+    <div class="cert-item"><span class="cert-dot"></span>丙級會計事務技術士</div>
+    <div class="cert-item"><span class="cert-dot"></span>會計能力測驗三級合格</div>
+    <div class="cert-item"><span class="cert-dot"></span>會計能力測驗一級合格</div>
+    <div class="cert-item"><span class="cert-dot" style="background:var(--gold)"></span>TOEIC 670 · GEPT 中級</div>
   </div>
 </section>
 </div>
 
 <footer>
-  <div class="container">楊欣培 · Stephanie Yang · Data Career Transition · 2026</div>
+  <div class="container">
+    楊欣培 · Stephanie Yang · friendmail1993@gmail.com · 台中市東勢區 · 0912-625-188
+    <br><span style="opacity:0.45;display:block;margin-top:6px">Built with GitHub Pages · 2026 · 可上班日 2026/06/01</span>
+  </div>
 </footer>
 
 <script>
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.08 });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
 </body>
